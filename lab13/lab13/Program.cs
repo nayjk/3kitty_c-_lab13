@@ -1,11 +1,35 @@
-﻿namespace lab13
+namespace lab13
 {
     public class Program
     {
         static void Main(string[] args)
         {
             Books Interreme = new Books { namebook = "Межвремье", autors = "Медина Мирай", datepublication = new DateTime(2022), pages = 890 };
-            Books Harry_Potter = new Books { namebook = "Гарри Поттер", autors = "Джоан Роулинг", datepublication = DateTime.Parse("2000 год"), pages = 600};
+            Books Harry_Potter = new Books { namebook = "Гарри Поттер", autors = "Джоан Роулинг", datepublication = DateTime.Parse("2000"), pages = 600};
+            
+            Interreme.Name_book();
+            Interreme.Autor();
+            Interreme.date_publication();
+            Interreme.page();
+
+            Harry_Potter.Name_book();
+            Harry_Potter.Autor();
+            Harry_Potter.date_publication();
+            Harry_Potter.page();
+
+            User_class Liza = new User_class { logins = new DateTime(2004), passwords = "лиза2004" };
+
+            Liza.login();
+            Liza.password();
+
+            User_class Lena = new User_class { logins = DateTime.Parse("1980"), passwords = "лена1980"};
+
+            Lena.login();
+            Lena.password();
+
+            Reader reader = new Reader { login2 = "Вилена" , Name_book2 = "Осколки нашей реальности"};
+
+            reader.message();
         }
     }
 
@@ -46,13 +70,6 @@
         {
             Console.WriteLine("Название книги: " + namebook);
         }
-        public Books(string namebook, string autors, DateTime datepublication, int pages)
-        {
-            this.datepublication = datepublication;
-            this.pages = pages;
-            this.autors = autors;
-            this.namebook = namebook;
-        }
     }
 
 
@@ -80,19 +97,23 @@
 
     public class User_class : User //класс пользователя, реализующий интерфейс "Пользователь"
     {
+        public DateTime logins;
+        public string passwords;
         public void login()
         {
-
+            Console.WriteLine("Существует пользователь под ником: " + logins);
         }
 
         public void password()
         {
-
+            Console.WriteLine("Пароль: " + passwords);
         }
     }
 
     public class Reader : User, Book
     {
+        public string login2;
+        public string Name_book2;
         public void login(){}
         public void password(){}
         public void date_publication(){}
@@ -102,7 +123,7 @@
 
         public void message()
         {
-            Console.WriteLine("Пользователь под логином " + login + " купил книгу " + Name_book);
+            Console.WriteLine("Пользователь под именем " + login2 + " купил книгу " + Name_book2);
         }
     }
 }
